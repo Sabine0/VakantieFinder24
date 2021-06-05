@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'VakantieFinder24';
+
+  prepareRoute(outlet: RouterOutlet) {
+    if (outlet.isActivated) return outlet.activatedRouteData['page']
+    return
+  }
 }

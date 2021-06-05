@@ -1,0 +1,17 @@
+.header-wrapper{
+  display: flex; // default is column
+  gap: 90%;
+
+  background-color: #404040;
+
+  padding: 10px;
+
+  .home-icon{
+    cursor: pointer;
+    min-width: 70px; // Find some other way so the icon doesnt resize :c
+  }
+
+  .login-button{
+    cursor: pointer;
+  }
+}
