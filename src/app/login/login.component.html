@@ -1,3 +1,34 @@
 <div class="login-wrapper">
-  <p>login works!</p>
+
+  <h2>Log in</h2>
+
+  <div class="imgcontainer">
+    <img src="assets/img/VakantieFinder.png"
+         alt="home-icon" width="140" height="140"/>
+  </div>
+
+  <form #loginform="ngForm" (ngSubmit)="loginUser(loginform)">
+    <div class="container">
+
+      <div class="form-group">
+        <label for="uname">Gebruikersnaam:</label>
+        <input class=form-control ngModel name="uname" id="uname" type="text" placeholder="Gebruikersnaam..." required>
+        <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Wachtwoord:</label>
+        <input class=form-control ngModel name="pwd" id="pwd" type="password" placeholder="Wachtwoord..." required>
+        <!--              <div class="invalid-input"> Wachtwoord is niet correct </div>-->
+      </div>
+
+      <button type="submit" class="btn btn-primary">Log in</button>
+
+      <p style="font-size: 11px">Nog geen account? Registreer
+        <a routerLink="" routerLinkActive="selected" style="color: lightgreen; font-size: 13px;"> hier</a>
+      </p>
+
+    </div>
+  </form>
+
 </div>
