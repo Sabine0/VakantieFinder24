@@ -1,0 +1,71 @@
+.first-phase-wrapper{
+  height: 100%;
+}
+
+.allImgs{
+  display: flex;
+  gap: 10px 10px;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  height: 100%;
+}
+.selected{
+  //filter: blur();
+  border: 8px solid blue;
+
+}
+
+
+// making the image less visible as you hover
+.hobbyImg img:hover{
+  opacity: .60;
+}
+// showing the text as you hover
+.hobbyImg:hover .overlay {
+  opacity: 1;
+}
+
+// the text specs
+.overlay {
+  position: relative;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.hobbyImg{
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+}
+
+/* Make the image to responsive */
+.notSelected {
+
+}
+
+
+.picsTable{
+  table-layout:fixed;
+  margin: auto;
+}
+
+//@media only screen and (orientation:landscape) {
+//  table#picsTable { width:80vh; height:80vh; border-spacing:1vh;}
+//}
+@media only screen and (orientation:portrait) {
+  table#picsTable { width:70vw; height:70vw; border-spacing:2vw;}
+}
+
+.img{
+  height: 200px;
+  width: 200px;
+}
