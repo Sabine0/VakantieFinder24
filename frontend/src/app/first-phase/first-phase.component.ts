@@ -6,10 +6,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./first-phase.component.scss']
 })
 export class FirstPhaseComponent implements OnInit {
+  private selectedHobbys: string[] = []
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  selectHobby(event: any): void{
+    let img =  event.target;
+
+    if(img.className == "NotSelected") {
+      img.className = "selected";
+      this.selectedHobbys.push(img.getAttribute("hobbyName"));
+      console.log(this.selectedHobbys)
+    }else{
+      img.className = "NotSelected";
+      this.deleteSelectedHobby(img.getAttribute("hobbyName"));
+    }
+  }
+
+  deleteSelectedHobby(hobbyName: string):void{
+    this.selectedHobbys.forEach((value,index)=>{
+      if(value==hobbyName) this.selectedHobbys.splice(index,1);
+    });
+    console.log(this.selectedHobbys);
   }
 
 }
