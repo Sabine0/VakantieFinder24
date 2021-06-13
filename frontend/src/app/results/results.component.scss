@@ -1,0 +1,52 @@
+.results-wrapper {
+
+}
+
+.buttons {
+  //background-color: aqua;
+  margin: auto;
+  width: auto;
+  max-height:100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+
+a { text-decoration: none; color: black }
+
+button {
+  background-color: honeydew;
+  text-decoration: none;
+  color: black;
+  padding: 10px 10px;
+  margin-top: 3%;
+  margin-left: 8%;
+  margin-right: 8%;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  border-radius: 7px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.pics_in_a_row {
+  width: 35%;
+  display: flex;
+  margin: auto;
+  overflow-y: auto;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  vertical-align: middle;
+  height: 95%;
+  width: 100%;
+}
