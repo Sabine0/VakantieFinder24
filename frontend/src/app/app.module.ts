@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { FirstPhaseComponent } from './first-phase/first-phase.component';
 import { SecondPhaseComponent } from './second-phase/second-phase.component';
 import { ResultsComponent } from './results/results.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,13 @@ import { ResultsComponent } from './results/results.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
