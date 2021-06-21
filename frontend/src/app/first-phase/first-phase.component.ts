@@ -16,12 +16,12 @@ export class FirstPhaseComponent implements OnInit {
   selectHobby(event: any): void{
     let img =  event.target;
 
-    if(img.className == "NotSelected") {
+    if(img.className == "notSelected") {
       img.className = "selected";
       this.selectedHobbys.push(img.getAttribute("hobbyName"));
       console.log(this.selectedHobbys)
     }else{
-      img.className = "NotSelected";
+      img.className = "notSelected";
       this.deleteSelectedHobby(img.getAttribute("hobbyName"));
     }
   }
