@@ -3,17 +3,19 @@ const app = express();
 
 const { mongoose } = require("./db/mongoose");
 
+// Load in the mongoose model
+const { User } = require("./db/models");
+
 /**
  * GET / (main page)
  * Purpose: testing if the API works
  */
-// Commented out because it wil override the main page ;)
-// app.get('/', (req, res) => {
-//     res.send("testing");
-// })
+app.get('/', (req, res) => {
+    res.send("testing");
+})
 
+// MORE CALLS GO HERE
 
-
-app.listen(4200, () => {
-    console.log("Server is listening on port 4200")
+app.listen(3000, () => {
+    console.log("Server is listening on port 3000")
 })

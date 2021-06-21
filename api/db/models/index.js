@@ -1,5 +1,5 @@
-// require goes here
+const { User } = require("./user.model");
 
 module.exports = {
-    
+    User
 }
