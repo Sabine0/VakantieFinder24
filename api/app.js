@@ -10,7 +10,7 @@ const { User } = require("./db/models");
  * GET / (main page)
  * Purpose: testing if the API works
  */
-app.get('/', (req, res) => {
+app.get('/users', (req, res) => {
     res.send("testing");
 })
 
