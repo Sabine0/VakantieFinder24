@@ -12,6 +12,7 @@ import { SecondPhaseComponent } from './second-phase/second-phase.component';
 import { ResultsComponent } from './results/results.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { environment } from '../environments/environment';
     FirstPhaseComponent,
     SecondPhaseComponent,
     ResultsComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

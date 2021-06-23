@@ -1,0 +1,49 @@
+<div class="register-wrapper">
+
+  <h2>Maak een account aan</h2>
+
+  <!--  <div class="imgcontainer">-->
+  <!--    <img src="assets/img/VakantieFinder.png"-->
+  <!--         alt="home-icon" width="140" height="140"/>-->
+  <!--  </div>-->
+
+  <form #registerform="ngForm" (ngSubmit)="registerUser(registerform)">
+    <div class="container">
+
+      <div class="form-group">
+        <label for="firstName">Voornaam:</label>
+        <input class=form-control ngModel name="firstName" id="firstName" type="text" placeholder="Voornaam..." required>
+        <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Achternaam:</label>
+        <input class=form-control ngModel name="lastName" id="lastName" type="text" placeholder="Achternaam..." required>
+        <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input class=form-control ngModel name="email" id="email" type="text" placeholder="Gebruikersnaam..." required>
+        <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Wachtwoord:</label>
+        <input class=form-control ngModel name="pwd" id="pwd" type="password" placeholder="Wachtwoord..." required>
+        <!--              <div class="invalid-input"> Wachtwoord is niet correct </div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="pwd2">Herhaal wachtwoord:</label>
+        <input class=form-control ngModel name="pwd2" id="pwd2" type="password" placeholder="Wachtwoord..." required>
+        <!--              <div class="invalid-input"> Wachtwoord is niet correct </div>-->
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">Registreer</button>
+
+    </div>
+  </form>
+
+</div>

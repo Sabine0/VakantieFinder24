@@ -1,13 +1,13 @@
 export class UserLoginValues{
 
   id: string
-  uname: string
+  email: string
   pwd: string
 
-  constructor(uname: string, pwd: string){
+  constructor(email: string, pwd: string){
 
     this.id = '1'
-    this.uname = uname
+    this.email = email
     this.pwd = pwd
   }
 }
