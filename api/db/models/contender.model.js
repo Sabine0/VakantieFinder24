@@ -8,6 +8,10 @@ const ContenderSchema = new mongoose.Schema({
     fotos:{
         type: Array,
         required: true
+    },
+    interesses:{
+        type: Array,
+        required: true
     }
 })
 

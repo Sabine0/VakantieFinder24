@@ -88,6 +88,15 @@ app.get('/contender/:plaatsnaam', (req, res) =>{
     })
 })
 
+/**
+ * GET /contender/:interesses
+ * Purpose: get contender with specified interesses
+ */
+app.get('/contender/:interesses', (req, res) =>{
+    Contender.find({
+        // interesses: ["strand", "zon"] // example
+    })
+})
     
 app.listen(3000, () => {
     console.log("Server is listening on port 3000")
