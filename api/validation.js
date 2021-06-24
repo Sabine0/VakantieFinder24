@@ -13,7 +13,7 @@ const registerValidation = (data) =>{
 const loginValidation = (data) =>{
     const schema = Joi.object({
         email: Joi.string().min(6).required().email(),
-        wachtwoord: Joi.string().min(6).required()
+        wachtwoord: Joi.string().min(5).required()
     });
     return schema.validate(data);
 }
