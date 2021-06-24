@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 // Standard port for mongoDB: 27017
-mongoose.connect('mongodb://localhost:27017/TaskManager', {useNewUrlParser: true}).then(() => {
+mongoose.connect('mongodb://localhost:27017/VakantieFinder', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log("Connected to MongoDB successfully");
 
 }).catch((e) =>{
