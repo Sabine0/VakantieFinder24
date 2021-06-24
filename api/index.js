@@ -1,53 +1,18 @@
 const express = require('express');
 const app = express();
-
 const { mongoose } = require("./db/mongoose");
 
-// Load in the mongoose model
-const { User, Contender } = require("./db/models");
+const authRoute = require('./routes/auth');
 
+// Load in the mongoose model
+// const { Contender } = require("./db/models");
+
+// Middleware
 app.use(express.json());
 
-
-// Calls for users
-/**
- * POST /user
- * Purpose: add a user
- */
-app.post('/user', (req, res) => {
-    let body = req.body;
-    let newUser = new User(body);
-
-    newUser.save().then(()=>{
-        res.send(newUser);
-    }).catch((e)=> {
-        res.status(400).send(e);
-    })
-})
-
-
-/**
- * GET /user
- * Purpose: get all users
- */
-app.get('/user', (req, res) => {
-    User.find({}).then((users) => {
-        res.send(users);
-    })
-})
-
-/**
- * GET /user/:id
- * Purpose: get specific
- */
-app.get('/user/:userid', (req, res) => {
-    User.find({
-        _id: req.params.userid
-    }).then((user)=>{
-        res.send(user);
-    })
-})
-
+// Route middlewares
+// USER ROUTES
+app.use('/api/user', authRoute);
 
 // Calls for contenders
 /**
@@ -88,16 +53,6 @@ app.get('/contender/:plaatsnaam', (req, res) =>{
     })
 })
 
-/**
- * GET /contender/:interesses
- * Purpose: get contender with specified interesses
- */
-app.get('/contender/:interesses', (req, res) =>{
-    Contender.find({
-        // interesses: ["strand", "zon"] // example
-    })
-})
-    
 app.listen(3000, () => {
     console.log("Server is listening on port 3000")
 })
