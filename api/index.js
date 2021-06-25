@@ -4,9 +4,7 @@ const { mongoose } = require("./db/mongoose");
 
 const authRoute = require('./routes/auth');
 const contendersRoute = require('./routes/contenders');
-
-// Load in the mongoose model
-// const { Contender } = require("./db/models");
+const usersRoute = require('./routes/users');
 
 // Middleware
 app.use(express.json());
@@ -19,11 +17,9 @@ app.use(function(req, res, next) {
 });
 
 // Route middlewares
-// USER ROUTES
-app.use('/api/user', authRoute);
-// app.use('/api/contender', contendersRoute);
-
-
+app.use('/api/', authRoute);
+app.use('/api/', usersRoute);
+app.use('/api/', contendersRoute);
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000")

@@ -29,7 +29,7 @@ export class WebRequestService {
   }
 
   login(email: string, wachtwoord: string){
-    return this.http.post(`${this.ROOT_URL}/api/user/login`, {
+    return this.http.post(`${this.ROOT_URL}/api/login`, {
       email,
       wachtwoord
     }, {
@@ -38,7 +38,7 @@ export class WebRequestService {
   }
 
   register(voornaam: string, achternaam: string, email: string, wachtwoord: string){
-    return this.http.post(`${this.ROOT_URL}/api/user/register`, {
+    return this.http.post(`${this.ROOT_URL}/api/register`, {
       voornaam,
       achternaam,
       email,

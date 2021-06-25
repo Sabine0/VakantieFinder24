@@ -1,3 +1,8 @@
+.buttonWrapper{
+  padding-bottom: 17px;
+  padding-top: 10px;
+}
+
 .first-phase-wrapper{
   height: 100%;
 }
@@ -14,7 +19,6 @@
   border: 8px solid blue;
 
 }
-
 
 // making the image less visible as you hover
 .hobbyImg img:hover{
@@ -51,7 +55,6 @@
 .notSelected {
 
 }
-
 
 .picsTable{
   table-layout:fixed;

@@ -5,17 +5,17 @@ const Contender = require('../db/models/contender.model');
  * GET /contender
  * Purpose: get all contenders
  */
-router.get('/all', (req, res) => {
+router.get('/contenders', (req, res) => {
     Contender.find({}).then((contenders) => {
         res.send(contenders);
     })
 })
 
 /**
- * POST /all
+ * POST /contenders
  * Purpose: add a contender
  */
-router.post('/all', async (req, res) => {
+router.post('/contenders', async (req, res) => {
     let newContender = new Contender({
         plaatsnaam: req.body.plaatsnaam,
         fotos: req.body.fotos
@@ -28,10 +28,10 @@ router.post('/all', async (req, res) => {
 })
 
 /**
- * GET /:plaatsnaam
+ * GET contenders/:plaatsnaam
  * Purpose: get contender with specified plaatsnaam
  */
-router.get('/:plaatsnaam', (req, res) =>{
+router.get('contenders/:plaatsnaam', (req, res) =>{
     Contender.findOne({
         plaatsnaam: req.params.plaatsnaam
     }).then((contender)=>{

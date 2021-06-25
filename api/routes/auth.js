@@ -28,7 +28,10 @@ router.post('/register', async (req, res) =>{
     });
     try{
         await user.save();
-        res.send({user: user._id});
+
+        const token = generateJWT(user);
+
+        res.json({token});
     }catch(err){
         res.status(400).send(err);
     }
@@ -48,12 +51,15 @@ router.post('/login', async (req, res) => {
         if(!validPass) return res.status(400).send("Invalid password");
 
 
-    // CREATE JWT
-    const token = jwt.sign({
-        _id: user._id
-    }, secret);
+    const token = generateJWT(user);
 
     res.json({token});
 });
+
+let generateJWT = (user) => {
+    return jwt.sign({
+        _id: user._id
+    }, secret);
+}
 
 module.exports = router;
