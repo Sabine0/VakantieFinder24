@@ -15,6 +15,4 @@ const ContenderSchema = new mongoose.Schema({
     }
 })
 
-const Contender = mongoose.model('Contender', ContenderSchema);
-
-module.exports = { Contender }
+module.exports = mongoose.model('Contender', ContenderSchema);

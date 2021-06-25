@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const Contender = require('../db/models/contender.model')
+const Contender = require('../db/models/contender.model');
 
 /**
  * GET /contender
  * Purpose: get all contenders
  */
-router.get('/all', (res, req) => {
+router.get('/all', (req, res) => {
     Contender.find({}).then((contenders) => {
         res.send(contenders);
     })
@@ -38,3 +38,6 @@ router.get('/:plaatsnaam', (req, res) =>{
         res.send(contender);
     })
 })
+
+module.exports = router;
+
