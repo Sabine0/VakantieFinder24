@@ -8,14 +8,13 @@ import {shareReplay, tap} from "rxjs/operators";
 })
 export class AuthService {
 
-  constructor(private webReqService: WebRequestService, private http: HttpClient) { }
+  constructor(private webReqService: WebRequestService) { }
 
   login(email: string, wachtwoord: string){
     return this.webReqService.login(email, wachtwoord).pipe(
       shareReplay(),
       tap((res: HttpResponse<any>) => {
-        // the auth tokens will be in the header of this response
-        this.setSession(res.body._id, <string>res.headers.get('token'));
+        this.setSession(res.body._id, res.body.token);
         console.log('Logged in successfully!');
       })
     );
@@ -25,8 +24,7 @@ export class AuthService {
     return this.webReqService.register(voornaam, achternaam, email, wachtwoord).pipe(
       shareReplay(),
       tap((res: HttpResponse<any>) => {
-        // the auth tokens will be in the header of this response
-        this.setSession(res.body._id, <string>res.headers.get('token'));
+        this.setSession(res.body._id, res.body.token);
         console.log('Successfully signed up and now logged in!');
       })
     );
@@ -37,6 +35,7 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
+  // use later
   removeSession(){
     localStorage.removeItem('user-id');
     localStorage.removeItem('token');

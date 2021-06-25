@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
         _id: user._id
     }, secret);
 
-    res.header('token', token).send(token);
+    res.json({token});
 });
 
 module.exports = router;
