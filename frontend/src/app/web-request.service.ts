@@ -28,4 +28,24 @@ export class WebRequestService {
     return this.http.delete(`${this.ROOT_URL}/${uri}`);
   }
 
+  login(email: string, wachtwoord: string){
+    return this.http.post(`${this.ROOT_URL}/api/user/login`, {
+      email,
+      wachtwoord
+    }, {
+      observe: 'response'
+    });
+  }
+
+  register(voornaam: string, achternaam: string, email: string, wachtwoord: string){
+    return this.http.post(`${this.ROOT_URL}/api/user/register`, {
+      voornaam,
+      achternaam,
+      email,
+      wachtwoord
+    },{
+      observe: 'response'
+    });
+  }
+
 }

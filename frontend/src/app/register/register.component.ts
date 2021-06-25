@@ -1,49 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import {UserRegisterValues} from "../login-services/userRegisterValues";
+import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent{
+export class RegisterComponent implements OnInit{
 
-  async registerUser(registerform: NgForm)
-  {
-    const registerValues = new UserRegisterValues(registerform.value.firstName,
-      registerform.value.lastName, registerform.value.email, registerform.value.pwd, registerform.value.pwd2)
+  constructor(private authService: AuthService, private router: Router) { }
 
-    // all values in form
-    let firstName = registerform.value.firstName;
-    let lastName =  registerform.value.lastName;
-    let email =  registerform.value.email;
-    let pwd =  registerform.value.pwd;
-    let pwd2 =  registerform.value.pwd2;
+  ngOnInit() {
+  }
 
-    if (pwd != pwd2)
-    {
-      console.log("wachtwoorden komen niet overeen")
+  onRegisterButtonClicked(voornaam: string, achternaam: string, email: string, wachtwoord: string, wachtwoord2: string) {
+    if (wachtwoord === wachtwoord2) {
+      this.authService.register(voornaam, achternaam, email, wachtwoord).subscribe((res: HttpResponse<any>) => {
+        console.log(res);
+        this.router.navigate(['/']);
+      });
     }
-
-    // if all fields are not empty, send values to api
-    if (firstName != undefined &&
-      lastName != undefined &&
-      email != undefined) {
-
-      console.log("zou moeten werken")
-      await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          firstName, lastName, email, pwd, pwd2
-        })
-      }).then((res) => res.json)
-    }
-
-    console.log(registerValues)
   }
 
 }

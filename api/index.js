@@ -3,6 +3,7 @@ const app = express();
 const { mongoose } = require("./db/mongoose");
 
 const authRoute = require('./routes/auth');
+const contendersRoute = require('./routes/contenders');
 
 // Load in the mongoose model
 // const { Contender } = require("./db/models");
@@ -10,48 +11,18 @@ const authRoute = require('./routes/auth');
 // Middleware
 app.use(express.json());
 
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200", "http://localhost:3000");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+});
+
 // Route middlewares
 // USER ROUTES
 app.use('/api/user', authRoute);
+app.use('/api/contender', contendersRoute);
 
-// Calls for contenders
-/**
- * POST /contender
- * Purpose: add a contender
- */
-app.post('/contender', async (req, res) => {
-        let newContender = new Contender({
-            plaatsnaam: req.body.plaatsnaam,
-            fotos: req.body.fotos
-        });
-        newContender.save().then((contender) => {
-            res.send(contender);
-        }).catch((e) => {
-            res.send(e);
-        })
-})
 
-/**
- * GET /contender
- * Purpose: get all contenders
- */
-app.get('/contender', (req, res) => {
-    Contender.find({}).then((contenders) => {
-        res.send(contenders);
-    })
-})
-
-/**
- * GET /contender/:plaatsnaam
- * Purpose: get contender with specified plaatsnaam
- */
-app.get('/contender/:plaatsnaam', (req, res) =>{
-    Contender.findOne({
-        plaatsnaam: req.params.plaatsnaam
-    }).then((contender)=>{
-        res.send(contender);
-    })
-})
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000")

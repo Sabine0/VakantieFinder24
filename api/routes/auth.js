@@ -40,12 +40,12 @@ router.post('/login', async (req, res) => {
     if(error) return res.status(400).send(error.details[0].message);
 
     // Check if the email exists
-    const user = await User.findOne({email: req.body.email});
-    if(!user) return res.status(400).send('Email is not found');
+        const user = await User.findOne({email: req.body.email});
+        if(!user) return res.status(400).send('Email is not found');
 
     // Check if password is correct
-    const validPass = await bcrypt.compare(req.body.wachtwoord, user.wachtwoord);
-    if(!validPass) return res.status(400).send("Invalid password");
+        const validPass = await bcrypt.compare(req.body.wachtwoord, user.wachtwoord);
+        if(!validPass) return res.status(400).send("Invalid password");
 
 
     // CREATE JWT
@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
         _id: user._id
     }, secret);
 
-    res.header('auth-token', token).send(token);
+    res.header('token', token).send(token);
 });
 
 module.exports = router;
