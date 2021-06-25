@@ -14,6 +14,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountoverzichtComponent } from './accountoverzicht/accountoverzicht.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     SecondPhaseComponent,
     ResultsComponent,
     RegisterComponent,
+    AccountoverzichtComponent,
   ],
   imports: [
     BrowserModule,

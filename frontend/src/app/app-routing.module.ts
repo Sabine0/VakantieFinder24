@@ -6,6 +6,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {SecondPhaseComponent} from "./second-phase/second-phase.component";
 import {ResultsComponent} from "./results/results.component";
+import {AccountoverzichtComponent} from "./accountoverzicht/accountoverzicht.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'first-phase', component: FirstPhaseComponent},
   {path: 'second-phase', component: SecondPhaseComponent},
-  {path: 'results', component: ResultsComponent}
+  {path: 'results', component: ResultsComponent},
+  {path: 'accountoverzicht', component: AccountoverzichtComponent}
 ];
 
 @NgModule({
