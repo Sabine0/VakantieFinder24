@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {WebRequestService} from "../web-request.service";
+
 
 @Component({
   selector: 'app-second-phase',
@@ -7,68 +9,101 @@ import { Router } from '@angular/router';
   styleUrls: ['./second-phase.component.scss']
 })
 export class SecondPhaseComponent implements OnInit {
+  private winner: any = "Unknown";
+  private testHobbys: string[] = ["kanoën", "skydiven", "uitgaan"];
+  private topTenContenders: any[]= [];
 
-  private phaseTwoIndex: number = 0; // om bij te houden of er 10 stappen zijn geweest
-  private stateNum: number = 0;   // om de index binnen de json bij te houden
-  private cityPics : Object = {
-    "amsterdam": ["https://cdn.pixabay.com/photo/2020/07/24/03/36/houses-5432876_960_720.jpg",
-                  "https://cdn.pixabay.com/photo/2019/05/26/18/27/bridge-4230946_960_720.jpg,",
-                  "https://cdn.pixabay.com/photo/2019/08/06/11/58/boat-4388160_960_720.jpg",
-                  "https://cdn.pixabay.com/photo/2019/03/25/15/25/travel-4080508_960_720.jpg",
-                  "https://cdn.pixabay.com/photo/2020/08/14/15/22/canal-5488271_960_720.jpg",
-                  "https://cdn.pixabay.com/photo/2021/02/11/07/57/amsterdam-6004539__340.jpg",
-                  "https://cdn.pixabay.com/photo/2012/10/10/10/49/dam-square-60599__480.jpg",
-                  "https://cdn.pixabay.com/photo/2017/08/19/16/09/canal-2659062_960_720.jpg",
-                  "https://cdn.pixabay.com/photo/2016/11/01/12/57/amsterdam-1788167__340.jpg",
-                  "https://cdn.pixabay.com/photo/2020/08/10/01/12/canal-5476717__340.jpg"
-    ],
-    "groningen": [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdZgd0uLDEsVQRJseh_jvBOKJKfCvuSYFoCA&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCecpJDmEBHtH2opGKkSpwYu023lscfOzb6g&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRab33oLEC4KS3ST4sAVsnGDHFn6M8tdzo6pA&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuNkA9g3Kx01UJjP-u08K2Yf1euS5Ad72Tcg&usqp=CAU",
-      "https://images.unsplash.com/photo-1555238920-7a6bea18473b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80",
-      "https://images.unsplash.com/photo-1618043704530-04afe939c583?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGdyb25pbmdlbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1608377638763-c0e71041a67d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGdyb25pbmdlbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1608377638763-c0e71041a67d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGdyb25pbmdlbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1612655535852-fb9f2691c5a8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGdyb25pbmdlbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-      "https://media1.hotels.nl/r/main-carousel/hotels/source/1545-1.jpg"
-    ]
-  }
-  constructor(private router: Router) { }
+  constructor(private router: Router, private webResSevice: WebRequestService) { }
 
   ngOnInit(): void {
+    let allContenders: any;
+    this.webResSevice.get("api/contenders").subscribe((data: any) => {
+      allContenders = data;
+      let citysWithNoHobbyMatched : any[] = []; // this will be used of there are less then 10 citys that match the hobbys
+      //maybe this will be a method
+      // vind de hobbys met meeste overeenkommsten en die insterten en een array.
+      for (let contender in allContenders) {
+        let numberOfMatchedHobbys = 0;
+        for (let hobby in this.testHobbys) {  // users hobby
+          if (allContenders[contender]["interesses"].indexOf(this.testHobbys[hobby]) > -1){ // if there is there one or more hobby match
+            numberOfMatchedHobbys++;
+            allContenders[contender]["numberOfMatchedHobbys"] = numberOfMatchedHobbys;  // adding the matched hobbys element to the object
+          }
+        }
+        if (numberOfMatchedHobbys == 0){
+          allContenders[contender]["numberOfMatchedHobbys"] = numberOfMatchedHobbys;
+          citysWithNoHobbyMatched.push(allContenders[contender]);
+        }
+
+
+        if (this.topTenContenders.length < 10 && allContenders[contender].numberOfMatchedHobbys > 0){    // if there is a place free and the there is at least one machted hobby
+          this.topTenContenders.push(allContenders[contender]);
+
+        }else {     // if there is no place free in the top 10 then replace the lowest value with a higher value
+          this.topTenContenders.sort(function (a, b) {
+            return a.numberOfMatchedHobbys - b.numberOfMatchedHobbys;
+          });
+          console.log(this.topTenContenders);
+
+          this.topTenContenders.shift();
+          this.topTenContenders.push(allContenders[contender]);
+        }
+      }
+      if (this.topTenContenders.length < 10){ // if there are less then 10 cities with matched hobbies there will be random cities in the quiz
+        for (let i = 0; i < 10; i++){
+          this.topTenContenders.push(citysWithNoHobbyMatched.pop());
+        }
+      }
+      this.changePick("right");
+      this.changePick("left");
+
+      } );
+
+
+
   }
 
-  nextCity(event: any){
-    let side: string ;
+
+  // if the user clicks on one of the buttons
+  nextCity(event: any) {
+    let side: string;
     if (event.target.getAttribute("side").valueOf() == "right") {
       side = "left";
-    }else{
+    } else {
       side = "right"
     }
+    this.changePick(side);
+  }
+  changePick(side: string) {
     //json omzetten in array
-    let arrCityPics = Object.values(this.cityPics);
 
-      for (let i = 0; i < arrCityPics[this.stateNum].length; i++){
+    if (this.topTenContenders.length > 0) {
+      let newCity = this.topTenContenders.pop();
+
+      for (let i = 0; i < newCity["fotos"].length; i++) {
 
         let attName = side + "Pic" + i; // creating the attribute name to manipulate the dom
 
         let pic = (<HTMLInputElement>document.getElementById(attName));
-        pic.setAttribute("src", arrCityPics[this.stateNum][i]);
+        pic.setAttribute("src", newCity["fotos"][i]);
+        // adding the current city name to container to be able to find the winner later
+        let container = <HTMLInputElement>document.getElementById(side+"Container");
+          container.setAttribute("cityName", newCity["plaatsnaam"]);
         //console.log(arrCityPics[this.stateNum][i]);
-     }
-      if (this.stateNum == arrCityPics.length - 1) {
-        this.stateNum = 0;
-        this.phaseTwoIndex++;
-      }else{
-        this.stateNum++;
-        this.phaseTwoIndex++;
       }
 
-      if (this.phaseTwoIndex == 10){
+    }else{
+      if (side == "left") {
+        let temp: any=  <HTMLInputElement>document.getElementById( "rightContainer");
+        this.winner = temp.getAttribute("cityName").valueOf();
+        console.log(this.winner);
+        this.router.navigate(['/', 'results']);
+      }else{
+        let temp: any=  <HTMLInputElement>document.getElementById( "leftContainer");
+        this.winner = temp.getAttribute("cityName").valueOf();
+        console.log(this.winner);
         this.router.navigate(['/', 'results']);
       }
+    }
   }
-
 }
