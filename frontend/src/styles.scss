@@ -14,7 +14,7 @@ html, body{
 }
 
 h1{
-  font-size: 48px;
+  font-size: 40px;
   color: white;
 }
 
@@ -24,21 +24,21 @@ h2{
   color: white;
 }
 
-// to make testing less annoying
-p{
-  color: white;
-}
-
-.button{
-  text-decoration: none;
+button {
   background: rgba(white, 0.6);
+  text-decoration: none;
+
+  padding: 10px 10px;
+  border-radius: 7px;
+
+  margin-top: 3%;
+  margin-left: 8%;
+  margin-right: 8%;
+  border: none;
 
   cursor: pointer;
 
-  color: black;
-
-  border-radius: 7px;
-  padding: 7px;
+  width: auto;
 }
 
 .button:hover {

@@ -1,15 +1,14 @@
-.buttonWrapper{
-  padding-bottom: 17px;
-  padding-top: 10px;
-}
-
 .first-phase-wrapper{
   height: 100%;
 }
 
+.button{
+  margin-top: 0;
+}
+
 .allImgs{
   display: flex;
-  gap: 10px 10px;
+  gap: 1%;
   overflow-y: auto;
   flex-wrap: wrap;
   height: 100%;
@@ -29,17 +28,17 @@
   opacity: 1;
 }
 
-// the text specs
+//// the text specs
 .overlay {
   position: relative;
   bottom: 0;
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5); /* Black see-through */
-  color: #f1f1f1;
+  border-radius: 7px;
+  color: white;
   width: 100%;
   transition: .5s ease;
   opacity:0;
-  color: white;
   font-size: 20px;
   padding: 10px;
   text-align: center;
