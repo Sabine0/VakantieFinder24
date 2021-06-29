@@ -28,17 +28,14 @@ button {
   background: rgba(white, 0.6);
   text-decoration: none;
 
-  padding: 10px 10px;
   border-radius: 7px;
-
-  margin-top: 3%;
-  margin-left: 8%;
-  margin-right: 8%;
   border: none;
 
-  cursor: pointer;
-
   width: auto;
+
+  padding: 10px 10px;
+
+  cursor: pointer;
 }
 
 .button:hover {
