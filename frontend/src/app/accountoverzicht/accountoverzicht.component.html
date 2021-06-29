@@ -12,29 +12,29 @@
 
       <div class="form-group">
         <label>Voornaam:</label>
-        <input class=form-control #voornaam type="text" placeholder="Voornaam..." required>
+        <input class=form-control #voornaam type="text" value="{{  firstName  }}" required>
         <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
       </div>
 
       <div class="form-group">
         <label>Achternaam:</label>
-        <input class=form-control #achternaam type="text" placeholder="Achternaam..." required>
+        <input class=form-control #achternaam type="text" value="{{  lastName  }}" required>
         <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
       </div>
 
       <div class="form-group">
         <label>E-mail:</label>
-        <input class=form-control #email type="text" placeholder="E-mail..." required>
+        <input class=form-control #email type="text" value="{{  mailAddress  }}" required>
         <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
       </div>
 
       <div class="form-group">
         <label>Wachtwoord:</label>
-        <input class=form-control #wachtwoord type="password" placeholder="Wachtwoord..." required>
+        <input class=form-control #wachtwoord type="password" placeholder="Voer een nieuw wachtwoord in" required>
         <!--              <div class="invalid-input"> Wachtwoord is niet correct </div>-->
       </div>
 
-      <button type="submit" class="btn btn-primary" (click)="onLoginButtonClicked(voornaam.value, achternaam.value, email.value, wachtwoord.value)">Wijzig uw gegevens</button>
+      <button type="submit" class="btn btn-primary" (click)="onChangeInfoClicked(voornaam.value, achternaam.value, email.value, wachtwoord.value)">Wijzig uw gegevens</button>
 
     </div>
   </form>

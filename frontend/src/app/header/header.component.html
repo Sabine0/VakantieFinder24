@@ -8,9 +8,14 @@
     Vakantie<span>Finder</span>
   </a>
 
-  <div class="header-right">
+  <div *ngIf="isUserLoggedIn() === false" class="header-right">
     <a class="active" routerLink="/login" routerLinkActive="selected">Log in</a>
   </div>
+
+  <div *ngIf="isUserLoggedIn()" class="header-right">
+    <a class="active" routerLink="/accountoverzicht" routerLinkActive="selected">Account</a>
+  </div>
+
 </div>
 
 </body>

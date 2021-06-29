@@ -40,4 +40,9 @@ export class AuthService {
     // localStorage.removeItem('user-id');
     localStorage.removeItem('token');
   }
+
+  // check if user is logged in
+  isLoggedIn() {
+    return localStorage.getItem('token') != null;
+  }
 }
