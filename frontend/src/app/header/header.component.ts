@@ -18,4 +18,8 @@ export class HeaderComponent implements OnInit {
     return this.auth.isLoggedIn();
   }
 
+  logOutUser() {
+    this.auth.removeSession();
+  }
+
 }

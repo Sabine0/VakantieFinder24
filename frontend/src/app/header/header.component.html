@@ -12,8 +12,12 @@
     <a class="active" routerLink="/login" routerLinkActive="selected">Log in</a>
   </div>
 
+  <div *ngIf="isUserLoggedIn()" (click)="logOutUser()" class="header-right">
+    <a class="active" routerLink="/" routerLinkActive="selected">Log uit</a>
+  </div>
+
   <div *ngIf="isUserLoggedIn()" class="header-right">
-    <a class="active" routerLink="/accountoverzicht" routerLinkActive="selected">Account</a>
+    <a routerLink="/accountoverzicht" routerLinkActive="selected" style="background-color: white">Account </a>
   </div>
 
 </div>
