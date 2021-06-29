@@ -1,53 +1,53 @@
 .first-phase-wrapper{
   height: 100%;
-}
-
-.button{
-  margin-top: 0;
+  //width: 100%;
+  //margin: auto;
 }
 
 .allImgs{
   display: flex;
-  gap: 1%;
-  overflow-y: auto;
+  flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
-  height: 100%;
+
+  padding-left: 50px;
+
+  gap: 20px;
+
+  overflow-y: auto;
+
+  width: 100%;
+  height: 500px;
+
 }
+
 .selected{
   //filter: blur();
   border: 8px solid blue;
-
 }
 
-// making the image less visible as you hover
 .hobbyImg img:hover{
   opacity: .60;
 }
-// showing the text as you hover
-.hobbyImg:hover .overlay {
-  opacity: 1;
-}
 
-//// the text specs
-.overlay {
-  position: relative;
-  bottom: 0;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+.interest-text {
+  //position: relative;
+  //bottom: 0;
+  text-align: center;
+  background: rgba(black, 0.5);
   border-radius: 7px;
   color: white;
   width: 100%;
-  transition: .5s ease;
-  opacity:0;
   font-size: 20px;
-  padding: 10px;
-  text-align: center;
+
+  padding: 7px;
 }
 
 .hobbyImg{
-  cursor: pointer;
   height: 200px;
   width: 200px;
+
+  cursor: pointer;
 }
 
 /* Make the image to responsive */
@@ -55,19 +55,9 @@
 
 }
 
-.picsTable{
-  table-layout:fixed;
-  margin: auto;
-}
-
 //@media only screen and (orientation:landscape) {
 //  table#picsTable { width:80vh; height:80vh; border-spacing:1vh;}
 //}
 @media only screen and (orientation:portrait) {
   table#picsTable { width:70vw; height:70vw; border-spacing:2vw;}
-}
-
-.img{
-  height: 200px;
-  width: 200px;
 }
