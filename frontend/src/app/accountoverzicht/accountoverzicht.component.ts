@@ -11,6 +11,8 @@ export class AccountoverzichtComponent implements OnInit {
   firstName: string;
   lastName: string
   mailAddress: string
+  infoshown: boolean = true
+  resultsshown: boolean = false
 
   constructor(private webReqService: WebRequestService) {
     this.firstName = '';
@@ -21,7 +23,6 @@ export class AccountoverzichtComponent implements OnInit {
   helper = new JwtHelperService();
 
   ngOnInit(): void {
-
     const getUser = this.webReqService.get('api/user/' + this.getUserId())
     getUser.subscribe((data : any) => {
       this.firstName = data.voornaam
@@ -42,6 +43,16 @@ export class AccountoverzichtComponent implements OnInit {
     // @ts-ignore
     const decodeToken = this.helper.decodeToken(token)
     return decodeToken._id // return user id
+  }
+
+  showInfo(){
+    this.infoshown = true;
+    this.resultsshown = false;
+  }
+
+  showResults(){
+    this.infoshown = false;
+    this.resultsshown = true;
   }
 
 }
