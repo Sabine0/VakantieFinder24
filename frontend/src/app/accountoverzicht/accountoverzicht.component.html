@@ -44,7 +44,11 @@
       <div *ngIf="resultsshown" class="results-form">
         <h1>Resultaten van de quiz komen hier</h1>
       </div>
-
+      <script>
+        const alertHTML = '<div class="alert">ALERT!!!</div>';
+        document.body.insertAdjacentHTML('beforeend', alertHTML);
+        setTimeout(() => document.querySelector('.alert').classList.add('hide'), 3000);
+      </script>
     </div>
   </form>
 

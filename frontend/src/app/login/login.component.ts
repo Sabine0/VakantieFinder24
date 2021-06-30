@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit{
   onLoginButtonClicked(email: string, wachtwoord: string){
     this.authService.login(email, wachtwoord).subscribe((res: HttpResponse<any>) => {
       if(res.status===200){
+        window.location.reload();
         this.router.navigate(['/']);
       }
       console.log(res);

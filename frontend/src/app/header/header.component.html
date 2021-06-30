@@ -21,7 +21,11 @@
   </div>
 
   <div *ngIf="isUserLoggedIn()" class="header-right">
-    <a routerLink="/accountoverzicht" routerLinkActive="selected" style="background-color: white">Account </a>
+     <!-- deze methode haalt de voornaam op als dit nog niet gedaan is -->
+    <a routerLink="/accountoverzicht" routerLinkActive="selected" style="background-color: white">
+      <img src="assets/img/User-Icon-PNG-715x715.png" alt="user_logged_in" width="22" height="22" style="vertical-align:middle"/>
+      {{ firstName }}
+    </a>
   </div>
 
 </div>

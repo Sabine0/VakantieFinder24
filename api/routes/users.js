@@ -19,11 +19,20 @@ router.get('/user/:userId',  (req, res) => {
  * Purpose: update user info
  */
 // maybe add later
-// router.patch('/user/:userId', (req, res) => {
-//     User.findOneAndUpdate({
-//
-//     })
-// })
+router.patch('/user/:userId', async (req, res) => {
+    try {
+        const _id = req.params.userId;
+        const updates = req.body;
+        const options = { new: true }
+
+        const result = await User.findByIdAndUpdate(_id, updates, options);
+        res.send(result)
+
+    } catch(err){
+        res.status(400).send(err);
+    }
+
+})
 
 module.exports = router;
 
