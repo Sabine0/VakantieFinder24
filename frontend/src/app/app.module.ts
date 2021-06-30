@@ -26,7 +26,7 @@ import { AccountoverzichtComponent } from './accountoverzicht/accountoverzicht.c
     SecondPhaseComponent,
     ResultsComponent,
     RegisterComponent,
-    AccountoverzichtComponent,
+    AccountoverzichtComponent
   ],
   imports: [
     BrowserModule,
