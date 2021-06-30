@@ -29,6 +29,9 @@ button:hover {
 .imgcontainer {
   text-align: center;
   margin: 2px 0 12px 0;
+  img{
+    cursor: pointer;
+  }
 }
 
 .container {
@@ -40,8 +43,6 @@ button:hover {
   padding-right: 35%;
   color: white;
 }
-
-
 
 
 
