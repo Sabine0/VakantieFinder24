@@ -14,6 +14,7 @@ export class ResultsComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.winner.subscribe(winner => {
       let winnerDiv = <HTMLInputElement>document.getElementById("winner");
+      console.log(winner);
       winnerDiv.innerHTML = winner;
     });
   }

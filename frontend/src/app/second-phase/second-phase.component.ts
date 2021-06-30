@@ -99,6 +99,7 @@ export class SecondPhaseComponent implements OnInit {
       if (side == "left") {
         let temp: any=  <HTMLInputElement>document.getElementById( "rightContainer");
         this.winner = temp.getAttribute("cityName").valueOf();
+        this.dataService.setWinner(this.winner);
         console.log(this.winner);
         this.router.navigate(['/', 'results']);
       }else{
