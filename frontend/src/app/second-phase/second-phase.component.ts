@@ -18,7 +18,7 @@ export class SecondPhaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.hobbies.subscribe( userHobbies => this.userHobbys = userHobbies);
-
+    console.log("userHobbies: " + this.userHobbys);
     let allContenders: any;
     this.webResSevice.get("api/contenders").subscribe((data: any) => {
       allContenders = data;
@@ -30,6 +30,7 @@ export class SecondPhaseComponent implements OnInit {
         for (let hobby in this.userHobbys) {  // users hobby
           if (allContenders[contender]["interesses"].indexOf(this.userHobbys[hobby]) > -1){ // if there is there one or more hobby match
             numberOfMatchedHobbys++;
+            //console.log("number of matched hobbies: " + numberOfMatchedHobbys);
             allContenders[contender]["numberOfMatchedHobbys"] = numberOfMatchedHobbys;  // adding the matched hobbys element to the object
           }
         }
@@ -55,12 +56,15 @@ export class SecondPhaseComponent implements OnInit {
       if (this.topTenContenders.length < 10){ // if there are less then 10 cities with matched hobbies there will be random cities in the quiz
         for (let i = 0; i < 10; i++){
           this.topTenContenders.push(citysWithNoHobbyMatched.pop());
+          console.log("there are nog enough hobbies matched pushinh" );
+          if (this.topTenContenders.length==10){
+            break;
+          }
         }
       }
       this.changePick("right");
       this.changePick("left");
-
-      } );
+    } );
 
 
 
@@ -69,6 +73,7 @@ export class SecondPhaseComponent implements OnInit {
 
   // if the user clicks on one of the buttons
   nextCity(event: any) {
+    console.log("button clicked");
     let side: string;
     if (event.target.getAttribute("side").valueOf() == "right") {
       side = "left";
