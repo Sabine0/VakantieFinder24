@@ -1,11 +1,13 @@
-<div class="app-wrapper">
+<html lang=nl>
+  <div class="app-wrapper">
 
-  <div class="top-section">
-    <app-header></app-header>
+    <div class="top-section">
+      <app-header></app-header>
+    </div>
+
+    <div class="content-section">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+
   </div>
-
-  <div class="content-section">
-    <router-outlet #outlet="outlet"></router-outlet>
-  </div>
-
-</div>
+</html>
