@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from "../data.service";
 
 @Component({
   selector: 'app-first-phase',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FirstPhaseComponent implements OnInit {
   private selectedHobbys: string[] = []
 
-  constructor() { }
+  constructor(private dataservice: DataService) { }
 
   ngOnInit(): void {
   }
@@ -19,10 +20,12 @@ export class FirstPhaseComponent implements OnInit {
     if(img.className == "notSelected") {
       img.className = "selected";
       this.selectedHobbys.push(img.getAttribute("hobbyName"));
+      this.dataservice.setHobbies(this.selectedHobbys);
       console.log(this.selectedHobbys)
     }else{
       img.className = "notSelected";
       this.deleteSelectedHobby(img.getAttribute("hobbyName"));
+      this.dataservice.setHobbies(this.selectedHobbys);
     }
   }
 

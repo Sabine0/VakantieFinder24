@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {WebRequestService} from "../web-request.service";
+import {DataService} from "../data.service";
 
 
 @Component({
@@ -10,12 +11,14 @@ import {WebRequestService} from "../web-request.service";
 })
 export class SecondPhaseComponent implements OnInit {
   private winner: any = "Unknown";
-  private testHobbys: string[] = ["kanoën", "skydiven", "uitgaan"];
+  private userHobbys: string[] = [];
   private topTenContenders: any[]= [];
 
-  constructor(private router: Router, private webResSevice: WebRequestService) { }
+  constructor(private router: Router, private webResSevice: WebRequestService, private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.hobbies.subscribe( userHobbies => this.userHobbys = userHobbies);
+
     let allContenders: any;
     this.webResSevice.get("api/contenders").subscribe((data: any) => {
       allContenders = data;
@@ -24,8 +27,8 @@ export class SecondPhaseComponent implements OnInit {
       // vind de hobbys met meeste overeenkommsten en die insterten en een array.
       for (let contender in allContenders) {
         let numberOfMatchedHobbys = 0;
-        for (let hobby in this.testHobbys) {  // users hobby
-          if (allContenders[contender]["interesses"].indexOf(this.testHobbys[hobby]) > -1){ // if there is there one or more hobby match
+        for (let hobby in this.userHobbys) {  // users hobby
+          if (allContenders[contender]["interesses"].indexOf(this.userHobbys[hobby]) > -1){ // if there is there one or more hobby match
             numberOfMatchedHobbys++;
             allContenders[contender]["numberOfMatchedHobbys"] = numberOfMatchedHobbys;  // adding the matched hobbys element to the object
           }
@@ -43,7 +46,7 @@ export class SecondPhaseComponent implements OnInit {
           this.topTenContenders.sort(function (a, b) {
             return a.numberOfMatchedHobbys - b.numberOfMatchedHobbys;
           });
-          console.log(this.topTenContenders);
+         // console.log(this.topTenContenders);
 
           this.topTenContenders.shift();
           this.topTenContenders.push(allContenders[contender]);
@@ -79,7 +82,7 @@ export class SecondPhaseComponent implements OnInit {
 
     if (this.topTenContenders.length > 0) {
       let newCity = this.topTenContenders.pop();
-
+      console.log(this.topTenContenders);
       for (let i = 0; i < newCity["fotos"].length; i++) {
 
         let attName = side + "Pic" + i; // creating the attribute name to manipulate the dom
@@ -101,6 +104,7 @@ export class SecondPhaseComponent implements OnInit {
       }else{
         let temp: any=  <HTMLInputElement>document.getElementById( "leftContainer");
         this.winner = temp.getAttribute("cityName").valueOf();
+        this.dataService.setWinner(this.winner);
         console.log(this.winner);
         this.router.navigate(['/', 'results']);
       }
