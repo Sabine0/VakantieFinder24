@@ -13,13 +13,12 @@
       <div class="form-group">
         <label>E-mail:</label>
         <input class=form-control #email type="text" placeholder="E-mail..." required>
-        <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
       </div>
 
       <div class="form-group">
         <label>Wachtwoord:</label>
         <input class=form-control #wachtwoord type="password" placeholder="Wachtwoord..." required>
-        <div *ngIf="this.wrongCredentials" class="invalid-input"> E-mail of Wachtwoord is incorrect </div>
+        <div *ngIf="this.wrongCredentials" class="invalid-input"> E-mail of wachtwoord is incorrect </div>
       </div>
 
       <button type="submit" class="btn btn-primary" (click)="onLoginButtonClicked(email.value, wachtwoord.value)">Log in</button>
