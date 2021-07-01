@@ -1,14 +1,19 @@
 .first-phase-wrapper{
-  padding: 10px 12px;
   height: 100%;
 }
 
 .left-container {
   //background-color: #04AA6D;
   width: 45%;
-  max-height: 100%;
   float: left;
+  min-height: 0;
   margin: 1%;
+
+  img{
+    height: 200px;
+    width: 400px;
+    //width: 50%;
+  }
 }
 
 .right-container {
@@ -17,26 +22,52 @@
   max-height: 100%;
   float: right;
   margin: 1%;
+
+  img{
+    //width: 50%;
+    height: 200px;
+    width: 400px;
+  }
 }
 
 .pics_in_a_row {
-  width: 100%;
   display: flex;
-  margin: auto;
-  overflow-y: auto;
+  align-items: center;
   flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 8px;
 }
 
 .column {
+  align-items: center;
   flex: 25%;
-  padding: 0 4px;
+  max-width: 25%;
 }
 
 .column img {
+  margin-top: 8px;
   vertical-align: middle;
-  height: 96%;
   width: 100%;
+}
 
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
 }
 
 a { text-decoration: none; color: black }
@@ -45,3 +76,4 @@ a { text-decoration: none; color: black }
 button:hover {
   opacity: 0.8;
 }
+
