@@ -13,19 +13,19 @@
       <div class="form-group">
         <label >Voornaam:</label>
         <input #voornaamInput class=form-control ngModel name="firstName" id="firstName" type="text" placeholder="Voornaam..." required>
-        <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+        <div *ngIf="voornaamNietCorrect" class="invalid-input"> {{ voornaamMelding }} </div>
       </div>
 
       <div class="form-group">
         <label >Achternaam:</label>
         <input #achternaamInput class=form-control ngModel name="lastName" id="lastName" type="text" placeholder="Achternaam..." required>
-        <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+        <div *ngIf="achternaamNietcorrect" class="invalid-input"> {{ achternaamMelding }} </div>
       </div>
 
       <div class="form-group">
         <label >Email:</label>
-        <input #emailInput class=form-control ngModel name="email" id="email" type="text" placeholder="Gebruikersnaam..." required>
-        <!--              <div class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+        <input #emailInput class=form-control ngModel name="email" email id="email" type="email" placeholder="E-mail..." required>
+        <div *ngIf="emailNietCorrect" class="invalid-input"> {{ emailMelding }} </div>
       </div>
 
       <div class="form-group">
@@ -37,7 +37,7 @@
       <div class="form-group">
         <label >Herhaal wachtwoord:</label>
         <input #wachtwoordInput2 class=form-control ngModel name="pwd2" id="pwd2" type="password" placeholder="Wachtwoord..." required>
-        <!--              <div class="invalid-input"> Wachtwoord is niet correct </div>-->
+        <div *ngIf="wachtwoordenNietCorrect" class="invalid-input"> {{ wachtwoordMelding }} </div>
       </div>
 
 

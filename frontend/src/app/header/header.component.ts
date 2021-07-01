@@ -16,13 +16,6 @@ export class HeaderComponent implements OnInit {
   constructor(private webReqService: WebRequestService, private auth: AuthService) { this.firstName = ''; }
 
   ngOnInit(): void {
-    // if(!this.firstNamePulled) { // controlleert of de voornaam al eens is opgehaald
-    //   const getUser = this.webReqService.get('api/user/' + this.auth.getUserId())
-    //   getUser.subscribe((data: any) => {
-    //     this.firstName = data.voornaam
-    //     // this.firstNamePulled = true;
-    //   })
-    // // }
   }
 
   // check if user is logged in

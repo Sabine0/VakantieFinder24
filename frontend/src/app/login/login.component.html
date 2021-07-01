@@ -19,7 +19,7 @@
       <div class="form-group">
         <label>Wachtwoord:</label>
         <input class=form-control #wachtwoord type="password" placeholder="Wachtwoord..." required>
-        <!--              <div class="invalid-input"> Wachtwoord is niet correct </div>-->
+        <div *ngIf="this.wrongCredentials" class="invalid-input"> E-mail of Wachtwoord is incorrect </div>
       </div>
 
       <button type="submit" class="btn btn-primary" (click)="onLoginButtonClicked(email.value, wachtwoord.value)">Log in</button>

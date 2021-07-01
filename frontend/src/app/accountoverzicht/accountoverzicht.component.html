@@ -17,25 +17,25 @@
         <div class="form-group">
           <label>Voornaam:</label>
           <input class=form-control #voornaam type="text" value="{{  firstName  }}" required>
-<!--          <div *ngIf="!voornaam" class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+          <div *ngIf="voornaamNietCorrect" class="invalid-input"> {{ voornaamMelding }} </div>
         </div>
 
         <div class="form-group">
           <label>Achternaam:</label>
           <input class=form-control #achternaam type="text" value="{{  lastName  }}" required>
-<!--          <div *ngIf="!achternaam" class="invalid-input"> Gebruikersnaam is nog leeg </div>-->
+          <div *ngIf="achternaamNietcorrect" class="invalid-input"> {{ achternaamMelding }} </div>
         </div>
 
         <div class="form-group">
           <label>E-mail:</label>
           <input class=form-control #email type="text" value="{{  mailAddress  }}" required>
-<!--          <div *ngIf="!email" class="invalid-input"> E-mail is nog leeg </div>-->
+          <div *ngIf="emailNietCorrect" class="invalid-input"> {{ emailMelding }} </div>
         </div>
 
         <div class="form-group">
           <label>Wachtwoord:</label>
           <input class=form-control #wachtwoord type="password" placeholder="Voer een nieuw wachtwoord in" required>
-<!--          <div *ngIf="!wachtwoord" class="invalid-input"> Wachtwoord is niet correct </div>-->
+           <div *ngIf="wachtwoordenNietCorrect" class="invalid-input"> {{ wachtwoordMelding }} </div>
         </div>
 
         <button type="submit" class="btn btn-primary" (click)="onChangeInfoClicked(voornaam.value, achternaam.value, email.value, wachtwoord.value)">Wijzig uw gegevens</button>

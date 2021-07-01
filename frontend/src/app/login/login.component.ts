@@ -10,21 +10,21 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit{
 
-  constructor(private authService: AuthService, private router: Router) { }
+  wrongCredentials : boolean;
+
+  constructor(private authService: AuthService, private router: Router) { this.wrongCredentials = false }
 
   ngOnInit() {
   }
 
   onLoginButtonClicked(email: string, wachtwoord: string){
+    this.wrongCredentials = true;
     this.authService.login(email, wachtwoord).subscribe((res: HttpResponse<any>) => {
       if(res.status===200){
-        window.location.reload();
         this.router.navigate(['/']);
       }
-      console.log(res);
     })
   }
-
 }
 
 
