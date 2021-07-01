@@ -19,7 +19,15 @@ export class ResultsComponent implements OnInit {
     let winnerDiv = <HTMLInputElement>document.getElementById("winner");
     winnerDiv.innerHTML = this.winner;
 
+    let url : string = "api/contenders/" + this.winner;
+    this.webService.get(url).subscribe( (data: any )=> {
 
+      for (let i = 0; i < data["fotos"].length; i++){
+        let element = <HTMLInputElement>document.getElementById("pic"+ i);
+        element.setAttribute("src", data["fotos"][i]);
+        console.log(data["fotos"][i]);
+      }
+      })
 
   }
 
