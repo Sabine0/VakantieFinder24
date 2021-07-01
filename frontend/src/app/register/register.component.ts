@@ -39,11 +39,11 @@ export class RegisterComponent implements OnInit{
       this.voornaamMelding = "Voornaam moet minimaal 3 characters bevatten"
     }
     else if( voornaam.length > 25 ) {
-      this.voornaamNietCorrect = false;
+      this.voornaamNietCorrect = true;
       this.voornaamMelding = "Voornaam mag maximaal 25 characters bevatten"
     }
     else {
-      this.voornaamNietCorrect = true;
+      this.voornaamNietCorrect = false;
     }
 
     // Achternaam validatie
