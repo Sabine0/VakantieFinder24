@@ -76,7 +76,7 @@ export class SecondPhaseComponent implements OnInit {
 
   // if the user clicks on one of the buttons
   nextCity(event: any) {
-    console.log("button clicked");
+    //console.log("button clicked");
     let side: string;
     if (event.target.getAttribute("side").valueOf() == "right") {
       side = "left";
