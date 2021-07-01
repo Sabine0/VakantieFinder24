@@ -33,7 +33,7 @@ import { AccountoverzichtComponent } from './accountoverzicht/accountoverzicht.c
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register('ngsw-worker.js', { // ngsw-worker.js in dist folder
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
