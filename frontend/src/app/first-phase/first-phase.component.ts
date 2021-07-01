@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../data.service";
+import {WebRequestService} from "../web-request.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-first-phase',
@@ -9,7 +11,7 @@ import {DataService} from "../data.service";
 export class FirstPhaseComponent implements OnInit {
   private selectedHobbys: string[] = []
 
-  constructor(private dataservice: DataService) { }
+  constructor(private dataservice: DataService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -34,6 +36,16 @@ export class FirstPhaseComponent implements OnInit {
       if(value==hobbyName) this.selectedHobbys.splice(index,1);
     });
     console.log(this.selectedHobbys);
+  }
+
+  ceck(event : any){
+    if (this.selectedHobbys.length > 2){
+      this.router.navigate(['/', 'second-phase']);
+    }else{
+      alert("Selecteer minimaal 2 interesses");
+    }
+
+    //routerLinkActive="selected"
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../data.service";
+import {WebRequestService} from "../web-request.service";
 
 @Component({
   selector: 'app-results',
@@ -9,7 +10,7 @@ import {DataService} from "../data.service";
 export class ResultsComponent implements OnInit {
   winner: string = "oops something went wrong";
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private webService: WebRequestService) { }
 
   ngOnInit(): void {
     this.dataService.winner.subscribe(winner => {
@@ -17,6 +18,9 @@ export class ResultsComponent implements OnInit {
     });
     let winnerDiv = <HTMLInputElement>document.getElementById("winner");
     winnerDiv.innerHTML = this.winner;
+
+
+
   }
 
 }
