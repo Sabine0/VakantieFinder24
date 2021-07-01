@@ -31,7 +31,7 @@ router.post('/contenders', async (req, res) => {
  * GET contenders/:plaatsnaam
  * Purpose: get contender with specified plaatsnaam
  */
-router.get('contenders/:plaatsnaam', (req, res) =>{
+router.get('/contenders/:plaatsnaam', (req, res) =>{
     Contender.findOne({
         plaatsnaam: req.params.plaatsnaam
     }).then((contender)=>{
