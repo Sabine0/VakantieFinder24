@@ -12,6 +12,10 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/css2?family=Inter",
+          "https://fonts.gstatic.com/**"
         ]
       }
     },
@@ -24,6 +28,21 @@
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "urls": ["http://localhost:3000/api/contenders",
+        "http://localhost:3000/api/user/:userId",
+        "http://localhost:3000/api/contenders/:plaatsnaam"
+      ],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "6h",
+        "timeout": "10s",
+        "strategy": "freshness"
       }
     }
   ]
