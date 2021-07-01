@@ -35,7 +35,7 @@
         <div class="form-group">
           <label>Wachtwoord:</label>
           <input class=form-control #wachtwoord type="password" placeholder="Voer huidig of nieuw wachtwoord in" required>
-           <div *ngIf="wachtwoordenNietCorrect" class="invalid-input"> {{ wachtwoordMelding }} </div>
+           <div *ngIf="wachtwoordNietCorrect" class="invalid-input"> {{ wachtwoordMelding }} </div>
         </div>
 
         <button type="submit" class="btn btn-primary" (click)="onChangeInfoClicked(voornaam.value, achternaam.value, email.value, wachtwoord.value)">Wijzig uw gegevens</button>

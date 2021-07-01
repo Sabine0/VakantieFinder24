@@ -29,7 +29,7 @@ export class AccountoverzichtComponent implements OnInit {
   emailNietCorrect : boolean = false
   emailMelding : string = ''
 
-  wachtwoordenNietCorrect : boolean = false
+  wachtwoordNietCorrect : boolean = false
   wachtwoordMelding : string = ''
 
   constructor(private webReqService: WebRequestService, private auth: AuthService, private router: Router) {
@@ -57,10 +57,12 @@ export class AccountoverzichtComponent implements OnInit {
       this.voornaamNietCorrect = true;
       this.voornaamMelding = "Voornaam moet minimaal 3 characters bevatten"
     }
-
-    if (voornaam.length > 25) {
+    else if (voornaam.length > 25) {
       this.voornaamNietCorrect = true;
       this.voornaamMelding = "Voornaam mag maximaal 25 characters bevatten"
+    }
+    else {
+      this.voornaamNietCorrect = false;
     }
 
     // Achternaam validatie
@@ -68,10 +70,12 @@ export class AccountoverzichtComponent implements OnInit {
       this.achternaamNietcorrect = true;
       this.achternaamMelding = "Achternaam moet minimaal 3 characters bevatten"
     }
-
-    if (achternaam.length > 25) {
+    else if (achternaam.length > 25) {
       this.achternaamNietcorrect = true;
       this.achternaamMelding = "Achternaam mag maximaal 25 characters bevatten"
+    }
+    else {
+      this.achternaamNietcorrect = false;
     }
 
     // Email validatie
@@ -80,16 +84,20 @@ export class AccountoverzichtComponent implements OnInit {
     if (!emailIsValid){
       this.emailNietCorrect = true;
       this.emailMelding = "Controlleer of de E-mail goed geschreven is "
+    } else {
+      this.emailNietCorrect = false;
     }
 
-    // Wachtwoorden validatie
+    // Wachtwoord validatie
     if (wachtwoord.length <= 4) {
-      this.wachtwoordenNietCorrect = true;
-      this.wachtwoordMelding = "Wachtwoorden moeten minimaal 5 characters lang zijn";
+      this.wachtwoordNietCorrect = true;
+      this.wachtwoordMelding = "Wachtwoord moet minimaal 5 characters lang zijn";
+    } else {
+      this.wachtwoordNietCorrect = false;
     }
 
     // als all velden goed zijn gekeurd worden de waarden naar de backend gestuurd
-    if (!this.voornaamNietCorrect && !this.achternaamNietcorrect && !this.emailNietCorrect && !this.wachtwoordenNietCorrect) {
+    if (!this.voornaamNietCorrect && !this.achternaamNietcorrect && !this.emailNietCorrect && !this.wachtwoordNietCorrect) {
       this.webReqService.patch('api/user/' + this.auth.getUserId(), { voornaam, achternaam, email, wachtwoord } )
       this.router.navigate(['/']);
     }

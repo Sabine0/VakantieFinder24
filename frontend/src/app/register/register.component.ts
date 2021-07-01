@@ -33,16 +33,17 @@ export class RegisterComponent implements OnInit{
   }
 
   onRegisterButtonClicked(voornaam: string, achternaam: string, email: string, wachtwoord: string, wachtwoord2: string) {
-
     // Voornaam validatie
     if (voornaam.length <= 2) {
       this.voornaamNietCorrect = true;
       this.voornaamMelding = "Voornaam moet minimaal 3 characters bevatten"
     }
-
-    if (voornaam.length > 25) {
-      this.voornaamNietCorrect = true;
+    else if( voornaam.length > 25 ) {
+      this.voornaamNietCorrect = false;
       this.voornaamMelding = "Voornaam mag maximaal 25 characters bevatten"
+    }
+    else {
+      this.voornaamNietCorrect = true;
     }
 
     // Achternaam validatie
@@ -50,10 +51,12 @@ export class RegisterComponent implements OnInit{
       this.achternaamNietcorrect = true;
       this.achternaamMelding = "Achternaam moet minimaal 3 characters bevatten"
     }
-
-    if (achternaam.length > 25) {
+    else if(achternaam.length > 25) {
       this.achternaamNietcorrect = true;
       this.achternaamMelding = "Achternaam mag maximaal 25 characters bevatten"
+    }
+    else {
+      this.achternaamNietcorrect = false;
     }
 
     // Email validatie
@@ -62,6 +65,8 @@ export class RegisterComponent implements OnInit{
     if (!emailIsValid){
         this.emailNietCorrect = true;
         this.emailMelding = "Controlleer of de E-mail goed geschreven is "
+    } else {
+      this.emailNietCorrect = false;
     }
 
     // Wachtwoorden validatie
@@ -69,10 +74,12 @@ export class RegisterComponent implements OnInit{
       this.wachtwoordenNietCorrect = true;
       this.wachtwoordMelding = "Wachtwoorden moeten minimaal 5 characters lang zijn";
     }
-
-    if (wachtwoord !== wachtwoord2) {
+    else if(wachtwoord !== wachtwoord2) {
       this.wachtwoordenNietCorrect = true;
       this.wachtwoordMelding = "Wachtwoorden komen niet overeen!";
+    }
+    else {
+      this.wachtwoordenNietCorrect = false;
     }
 
     // als all velden goed zijn gekeurd worden de waarden naar de backend gestuurd
