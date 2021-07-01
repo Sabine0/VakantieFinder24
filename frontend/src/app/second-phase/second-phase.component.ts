@@ -43,25 +43,31 @@ export class SecondPhaseComponent implements OnInit {
         if (this.topTenContenders.length < 10 && allContenders[contender].numberOfMatchedHobbys > 0){    // if there is a place free and the there is at least one machted hobby
           this.topTenContenders.push(allContenders[contender]);
 
-        }else {     // if there is no place free in the top 10 then replace the lowest value with a higher value
+        }
+        if (this.topTenContenders.length >= 10){     // if there is no place free in the top 10 then replace the lowest value with a higher value
           this.topTenContenders.sort(function (a, b) {
             return a.numberOfMatchedHobbys - b.numberOfMatchedHobbys;
           });
          // console.log(this.topTenContenders);
-
           this.topTenContenders.shift();
           this.topTenContenders.push(allContenders[contender]);
         }
       }
+      //console.log(this.topTenContenders);
       if (this.topTenContenders.length < 10){ // if there are less then 10 cities with matched hobbies there will be random cities in the quiz
-        for (let i = 0; i < 10; i++){
-          this.topTenContenders.push(citysWithNoHobbyMatched.pop());
-          console.log("there are nog enough hobbies matched pushinh" );
+        for (let i = 0; i <= 10; i++){
           if (this.topTenContenders.length==10){
             break;
           }
+          let cityToBeadded = citysWithNoHobbyMatched.pop();
+          this.topTenContenders.push(cityToBeadded);
+         // console.log("there are nog enough hobbies matched pushing " +  cityToBeadded["plaatsnaam"]);
         }
       }
+      // this is for testing to see if there are duplicated values in de array
+      // for (let i = 0; i < this.topTenContenders.length; i++) {
+      //   console.log(i + " " +  this.topTenContenders[i]["plaatsnaam"]);
+      // }
       this.changePick("right");
       this.changePick("left");
     } );

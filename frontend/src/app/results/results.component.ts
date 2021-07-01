@@ -25,7 +25,7 @@ export class ResultsComponent implements OnInit {
       for (let i = 0; i < data["fotos"].length; i++){
         let element = <HTMLInputElement>document.getElementById("pic"+ i);
         element.setAttribute("src", data["fotos"][i]);
-        console.log(data["fotos"][i]);
+        //console.log(data["fotos"][i]);
       }
       })
 

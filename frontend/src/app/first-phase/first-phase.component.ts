@@ -39,7 +39,7 @@ export class FirstPhaseComponent implements OnInit {
   }
 
   ceck(event : any){
-    if (this.selectedHobbys.length > 2){
+    if (this.selectedHobbys.length >= 2){
       this.router.navigate(['/', 'second-phase']);
     }else{
       alert("Selecteer minimaal 2 interesses");
