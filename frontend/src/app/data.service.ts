@@ -17,11 +17,11 @@ export class DataService {
 
   setHobbies(hobbies: string[]):void{
     this.hobbiesSource.next(hobbies);
-    console.log("dataService updated hobbies : " + hobbies);
+   // console.log("dataService updated hobbies : " + hobbies);
   }
 
   setWinner(winner: string):void{
     this.winnerSource.next(winner);
-    console.log("dataService updated winner : " + winner);
+  //  console.log("dataService updated winner : " + winner);
   }
 }
