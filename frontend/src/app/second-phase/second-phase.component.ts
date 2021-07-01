@@ -18,12 +18,12 @@ export class SecondPhaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.hobbies.subscribe( userHobbies => this.userHobbys = userHobbies);
-    console.log("userHobbies: " + this.userHobbys);
+    //console.log("userHobbies: " + this.userHobbies);
     let allContenders: any;
     this.webResSevice.get("api/contenders").subscribe((data: any) => {
       allContenders = data;
-      let citysWithNoHobbyMatched : any[] = []; // this will be used of there are less then 10 citys that match the hobbys
-      //maybe this will be a method
+      let citysWithNoHobbyMatched : any[] = []; // this will be used of there are less then 10 cities that match the hobbies
+
       // vind de hobbys met meeste overeenkommsten en die insterten en een array.
       for (let contender in allContenders) {
         let numberOfMatchedHobbys = 0;
@@ -31,7 +31,7 @@ export class SecondPhaseComponent implements OnInit {
           if (allContenders[contender]["interesses"].indexOf(this.userHobbys[hobby]) > -1){ // if there is there one or more hobby match
             numberOfMatchedHobbys++;
             //console.log("number of matched hobbies: " + numberOfMatchedHobbys);
-            allContenders[contender]["numberOfMatchedHobbys"] = numberOfMatchedHobbys;  // adding the matched hobbys element to the object
+            allContenders[contender]["numberOfMatchedHobbys"] = numberOfMatchedHobbys;  // adding the matched hobbies element to the object
           }
         }
         if (numberOfMatchedHobbys == 0){
@@ -40,7 +40,7 @@ export class SecondPhaseComponent implements OnInit {
         }
 
 
-        if (this.topTenContenders.length < 10 && allContenders[contender].numberOfMatchedHobbys > 0){    // if there is a place free and the there is at least one machted hobby
+        if (this.topTenContenders.length < 10 && allContenders[contender].numberOfMatchedHobbys > 0){    // if there is a place free and the there is at least one matched hobby
           this.topTenContenders.push(allContenders[contender]);
 
         }
@@ -61,7 +61,7 @@ export class SecondPhaseComponent implements OnInit {
           }
           let cityToBeadded = citysWithNoHobbyMatched.pop();
           this.topTenContenders.push(cityToBeadded);
-         // console.log("there are nog enough hobbies matched pushing " +  cityToBeadded["plaatsnaam"]);
+         // console.log("there are nog enough hobbies matched pushing " +  cityToBeAdded["plaatsnaam"]);
         }
       }
       // this is for testing to see if there are duplicated values in de array
@@ -71,9 +71,6 @@ export class SecondPhaseComponent implements OnInit {
       this.changePick("right");
       this.changePick("left");
     } );
-
-
-
   }
 
 
@@ -89,11 +86,11 @@ export class SecondPhaseComponent implements OnInit {
     this.changePick(side);
   }
   changePick(side: string) {
-    //json omzetten in array
+
 
     if (this.topTenContenders.length > 0) {
       let newCity = this.topTenContenders.pop();
-      console.log(this.topTenContenders);
+      //console.log(this.topTenContenders);
       for (let i = 0; i < newCity["fotos"].length; i++) {
 
         let attName = side + "Pic" + i; // creating the attribute name to manipulate the dom
@@ -111,13 +108,13 @@ export class SecondPhaseComponent implements OnInit {
         let temp: any=  <HTMLInputElement>document.getElementById( "rightContainer");
         this.winner = temp.getAttribute("cityName").valueOf();
         this.dataService.setWinner(this.winner);
-        console.log(this.winner);
+        //console.log(this.winner);
         this.router.navigate(['/', 'results']);
       }else{
         let temp: any=  <HTMLInputElement>document.getElementById( "leftContainer");
         this.winner = temp.getAttribute("cityName").valueOf();
         this.dataService.setWinner(this.winner);
-        console.log(this.winner);
+        //console.log(this.winner);
         this.router.navigate(['/', 'results']);
       }
     }
