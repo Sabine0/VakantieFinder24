@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit{
 
   onLoginButtonClicked(email: string, wachtwoord: string){
     this.wrongCredentials = true;
-    this.authService.login(email, wachtwoord).subscribe((res: HttpResponse<any>) => {
+    this.authService.login(String(email).toLowerCase(), String(wachtwoord).toLowerCase()).subscribe((res: HttpResponse<any>) => {
       if(res.status===200){
         this.router.navigate(['/']);
       }

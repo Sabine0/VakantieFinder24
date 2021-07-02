@@ -43,15 +43,20 @@ export class AccountoverzichtComponent implements OnInit {
   ngOnInit(): void {
     const getUser = this.webReqService.get('api/user/' + this.getUserId())
     getUser.subscribe((data : any) => {
-      this.firstName = data.voornaam
-      this.lastName = data.achternaam
-      this.mailAddress = data.email
+      this.firstName = String(data.voornaam).charAt(0).toUpperCase() + String(data.voornaam).slice(1)
+      this.lastName = String(data.achternaam).charAt(0).toUpperCase() + String(data.achternaam).slice(1)
+      this.mailAddress = String(data.email).charAt(0).toUpperCase() + String(data.email).slice(1)
     })
 
   }
 
   // TODO: add methods for changing user info
   onChangeInfoClicked(voornaam: string, achternaam: string, email: string, wachtwoord: string){
+    let voornaamLowerCase = String(voornaam).toLowerCase()
+    let achternaamLowerCase = (String(achternaam).toLowerCase())
+    let emailLowerCase = (String(email).toLowerCase())
+
+
     // Voornaam validatie
     if (voornaam.length <= 2) {
       this.voornaamNietCorrect = true;
@@ -98,7 +103,7 @@ export class AccountoverzichtComponent implements OnInit {
 
     // als all velden goed zijn gekeurd worden de waarden naar de backend gestuurd
     if (!this.voornaamNietCorrect && !this.achternaamNietcorrect && !this.emailNietCorrect && !this.wachtwoordNietCorrect) {
-      this.webReqService.patch('api/user/' + this.auth.getUserId(), { voornaam, achternaam, email, wachtwoord } )
+      this.webReqService.patch('api/user/' + this.auth.getUserId(), { voornaamLowerCase, achternaamLowerCase, emailLowerCase, wachtwoord } )
       this.router.navigate(['/']);
     }
   }
